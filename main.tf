@@ -45,3 +45,12 @@ module "ec2_instance" {
     OwnerSRE = "Valfenda"
   }
 }
+
+resource "aws_eip" "jenkins-ip" {
+  instance = module.ec2_instance.id
+  vpc      = true
+
+  tags = {
+    Name = "Jenkins-Server-EIP"
+  }
+}
